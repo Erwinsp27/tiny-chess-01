@@ -7,16 +7,20 @@
 A small but real chess engine in 4 KB of Python, built for the make.fun
 bounty "Build the strongest chess engine in 4 KB of Python" (tiny-chess-01).
 
-## Engine
+## Engine (v3.1)
 
-- 64-square board, legal move generation (castling, en passant, promotion,
+- 0x88 board, legal move generation (castling, en passant, promotion,
   check filtering via attack detection)
-- Negamax alpha-beta search with iterative deepening, a shared node budget,
-  transposition table (main search + quiescence), killer-move ordering and
-  MVV-LVA capture ordering
-- Quiescence search over captures, promotions and replies to check
-- Evaluation: material + Michniewski piece-square tables, bishop pair,
-  king pawn-shield safety, passed-pawn bonuses
+- Negamax alpha-beta search with iterative deepening, a fixed node budget
+  (150k/move), transposition table, killer-move ordering and MVV-LVA
+  capture ordering, PVS in the main search and at the root (null-window
+  + full re-search, best move tracked strictly), and LMR on quiet moves
+- Quiescence search over captures, promotions and replies to check, with
+  delta pruning
+- Evaluation: material + formula piece-square tables (pawn advance/centre,
+  knight/bishop/queen centre, rook rank, king safety), bishop-pair bonus,
+  passed-pawn bonuses, tempo; en-passant square set only on a real pawn
+  double-push
 
 ## Files
 

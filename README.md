@@ -22,6 +22,12 @@ bounty "Build the strongest chess engine in 4 KB of Python" (tiny-chess-01).
   passed-pawn bonuses, tempo; en-passant square set only on a real pawn
   double-push
 
+## Round 3
+
+Resubmission of the unchanged v3.1 engine: `main.py` repacked from `src.py`
+in a recorded session to fix transcript packaging (round 2 was rejected
+only on transcript checks). No engine logic changed.
+
 ## Files
 
 - `main.py` — the entrypoint (a `makefun compress` pack of `src.py`); this is

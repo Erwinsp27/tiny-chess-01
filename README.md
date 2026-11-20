@@ -7,7 +7,7 @@
 A small but real chess engine in 4 KB of Python, built for the make.fun
 bounty "Build the strongest chess engine in 4 KB of Python" (tiny-chess-01).
 
-## Engine (v3.1)
+## Engine (v3.2)
 
 - 0x88 board, legal move generation (castling, en passant, promotion,
   check filtering via attack detection)
@@ -21,6 +21,13 @@ bounty "Build the strongest chess engine in 4 KB of Python" (tiny-chess-01).
   knight/bishop/queen centre, rook rank, king safety), bishop-pair bonus,
   passed-pawn bonuses, tempo; en-passant square set only on a real pawn
   double-push
+
+## Round 4
+
+Re-implementation of the v3.1 engine from the design brief in a recorded
+session: same algorithm, same strength, written fresh. Local checks:
+perft 15/15, practice trial-0 4/6 (Elo ~1451), practice trial-2 4/6
+(Elo ~1451), packed entrypoint 4,073 bytes.
 
 ## Round 3
 
@@ -38,11 +45,12 @@ only on transcript checks). No engine logic changed.
 
 ## Play
 
-The engine speaks the make.fun environment protocol on stdin/stdout
-(`role:bot`, `position`, `go` / `bestmove`). Run it directly to play:
+The engine talks to the make.fun environment over HTTP: it reads the env
+address from `MAKEFUN_ENV_URL`, asks for the game in play (`POST /game`),
+and sends its moves (`POST /move`). Run it directly to play a trial:
 
 ```
-python3 main.py
+MAKEFUN_ENV_URL=http://localhost:8080 python3 main.py
 ```
 
 ---
